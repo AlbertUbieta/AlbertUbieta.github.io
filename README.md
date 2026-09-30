@@ -101,7 +101,7 @@ Now we'll host the website via GitHub pages!
 
 2. **Install gh-pages**
     ```
-    npm instal --save gh-pages
+    npm install --save gh-pages
     ```
 
 3. **Deploy to GitHub Pages**

@@ -1,17 +1,17 @@
 {
   "name": "Gengar",
-  "title": "Computer Engineer",
+  "title": "Prompt Engineer",
   "profileImage": "images/Gengar.png",
   "socialLinks": [
     {
       "label": "GitHub",
       "icon": "github",
-      "url": "https://github.com/lotusey"
+      "url": "https://github.com/Gengar"
     },
     {
       "label": "LinkedIn",
       "icon": "linkedin",
-      "url": "https://www.linkedin.com/in/louisirias/"
+      "url": "https://www.linkedin.com/in/Gengar/"
     }
   ],
   "expertiseTitle": "Expertise",
@@ -110,6 +110,6 @@
   "contact": {
     "title": "Contact Me",
     "description": "Got a project waiting to be realized? Let's collaborate and make it happen!",
-    "recipientEmail": "lhirias@gmail.com"
+    "recipientEmail": "x@mail.com"
   }
 }
