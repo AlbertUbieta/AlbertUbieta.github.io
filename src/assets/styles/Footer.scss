@@ -12,4 +12,14 @@ footer {
     p {
         font-size: 0.8em;
     }
+
+    .footer_social_icons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        svg {
+            margin-right: 0;
+        }
+    }
 }

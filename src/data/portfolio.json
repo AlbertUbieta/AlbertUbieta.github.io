@@ -109,6 +109,7 @@
   ],
   "contact": {
     "title": "Contact Me",
-    "description": "Got a project waiting to be realized? Let's collaborate and make it happen!"
+    "description": "Got a project waiting to be realized? Let's collaborate and make it happen!",
+    "recipientEmail": "lhirias@gmail.com"
   }
 }

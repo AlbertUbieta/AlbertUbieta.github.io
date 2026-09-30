@@ -2,16 +2,13 @@ import React from "react";
 import '../assets/styles/Main.scss';
 import { Portfolio } from '../types/portfolio';
 import resolveImage from '../utils/resolveImage';
+import SocialLinks from "./Social_Icons";
 
 interface MainProps {
   portfolio: Portfolio;
 }
 
 function Main({ portfolio }: MainProps) {
-  const socialLinks = portfolio.socialLinks.map((link) => (
-    <a key={link.label} href={link.url} target="_blank" rel="noreferrer">{link.label}</a>
-  ));
-
   return (
     <div className="container">
       <div className="about-section">
@@ -21,13 +18,11 @@ function Main({ portfolio }: MainProps) {
           </div>
         )}
         <div className="content">
-          <div className="social_icons">{socialLinks}</div>
+          <SocialLinks links={portfolio.socialLinks} className="social_icons" />
           <h1>{portfolio.name}</h1>
           <p>{portfolio.title}</p>
 
-          <div className="mobile_social_icons">
-            {socialLinks}
-          </div>
+          <SocialLinks links={portfolio.socialLinks} className="mobile_social_icons" />
         </div>
       </div>
     </div>

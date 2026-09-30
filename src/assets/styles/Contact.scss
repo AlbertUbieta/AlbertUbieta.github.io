@@ -7,6 +7,28 @@
 .contact-form {
   padding-top: 20px;
 
+  .MuiInputBase-root {
+    background-color: white;
+    color: #111;
+  }
+
+  .MuiInputBase-input {
+    color: #111;
+  }
+
+  .MuiInputBase-input::placeholder {
+    color: #666;
+    opacity: 1;
+  }
+
+  .MuiInputLabel-root {
+    color: #4b5563;
+  }
+
+  .MuiInputLabel-root.Mui-focused {
+    color: #5000ca;
+  }
+
   button {
     float: right;
     background-color: white;
@@ -18,9 +40,11 @@
     color: white;
   }
 
-  fieldset {
-    background-color: white;
-  }
+}
+
+.contact-form-message {
+  clear: both;
+  padding-top: 12px;
 }
 
 label {

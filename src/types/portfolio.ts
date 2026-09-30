@@ -39,5 +39,6 @@ export interface Portfolio {
   contact: {
     title: string;
     description: string;
+    recipientEmail?: string;
   };
 }

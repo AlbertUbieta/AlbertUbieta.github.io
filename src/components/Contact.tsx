@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -10,6 +9,7 @@ interface ContactProps {
   content: {
     title: string;
     description: string;
+    recipientEmail?: string;
   };
 }
 
@@ -22,38 +22,37 @@ function Contact({ content }: ContactProps) {
   const [nameError, setNameError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
+  const [formMessage, setFormMessage] = useState<string>('');
 
-  const form = useRef();
+  const sendEmail = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  const sendEmail = (e: any) => {
-    e.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+    const recipientEmail = content.recipientEmail?.trim();
 
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
+    setNameError(!trimmedName);
+    setEmailError(!trimmedEmail);
+    setMessageError(!trimmedMessage);
+    setFormMessage('');
 
-    /* Uncomment below if you want to enable the emailJS */
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      return;
+    }
 
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
+    if (!recipientEmail) {
+      setFormMessage('The portfolio owner has not added a contact email yet.');
+      return;
+    }
 
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+    const subject = encodeURIComponent(`Portfolio message from ${trimmedName}`);
+    const body = encodeURIComponent(
+      `Name: ${trimmedName}\nEmail / phone: ${trimmedEmail}\n\n${trimmedMessage}`
+    );
+
+    setFormMessage('Your email app should open with the message ready to review and send.');
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -63,18 +62,19 @@ function Contact({ content }: ContactProps) {
           <h1>{content.title}</h1>
           <p>{content.description}</p>
           <Box
-            ref={form}
             component="form"
             noValidate
             autoComplete="off"
             className='contact-form'
+            onSubmit={sendEmail}
           >
             <div className='form-flex'>
               <TextField
                 required
-                id="outlined-required"
+                id="contact-name"
                 label="Your Name"
                 placeholder="What's your name?"
+                autoComplete="name"
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
@@ -84,7 +84,7 @@ function Contact({ content }: ContactProps) {
               />
               <TextField
                 required
-                id="outlined-required"
+                id="contact-email"
                 label="Email / Phone"
                 placeholder="How can I reach you?"
                 value={email}
@@ -97,7 +97,7 @@ function Contact({ content }: ContactProps) {
             </div>
             <TextField
               required
-              id="outlined-multiline-static"
+              id="contact-message"
               label="Message"
               placeholder="Send me any inquiries or questions"
               multiline
@@ -110,7 +110,8 @@ function Contact({ content }: ContactProps) {
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
+            {formMessage && <p className="contact-form-message" role="status">{formMessage}</p>}
+            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
               Send
             </Button>
           </Box>
