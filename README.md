@@ -42,7 +42,9 @@ View the [Demo](https://yujisatojr.github.io/react-portfolio-template/).
 
 4. Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
 
-5. Customize the template by navigating to the `/src/components` directory. Modify texts, pictures, and other information as needed.
+5. Open `src/data/portfolio.json` and replace the example information with your own. The page updates from this file; you do not need to edit the React components.
+
+The profile file contains your name and title, social links, expertise and technologies, experience, projects, and contact-section text. Add your images to `public/images/` and use paths such as `images/profile.jpg` or `images/project.jpg` in the JSON. You can also use a full image URL. The included project thumbnail names (`mock01.png` through `mock10.png`) continue to work.
 
 The page will reload if you make edits, and you will see any lint errors in the console.
 
